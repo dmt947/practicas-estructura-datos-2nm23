@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1776838053source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/estaticos/Cola/src/Cola.cpp
+
+1777704879source:/home/xdmt/adt/estaticos/Cola/src/Cola.cpp
+	"Cola.h"
+
+1777704879/home/xdmt/adt/estaticos/Cola/include/Cola.h
+
+1777704889source:/home/xdmt/adt/estaticos/Cola/main.cpp
+	"ColaT.h"
+	<iostream>
+	<string>
+
+1777705286/home/xdmt/adt/estaticos/Cola/include/ColaT.h
+	"Cola.h"
+	"Nodo.h"
+	"../src/ColaT.tpp"
+
+1777704861/home/xdmt/adt/estaticos/Cola/include/Nodo.h
+	"../src/Nodo.tpp"
+
+1777704861/home/xdmt/adt/estaticos/Cola/src/Nodo.tpp
+
+1777705337/home/xdmt/adt/estaticos/Cola/src/ColaT.tpp
+	<iostream>
+
