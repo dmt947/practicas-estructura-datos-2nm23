@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1776840711source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/estaticos/Lista/src/Lista.cpp
+
+1776840622source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/estaticos/Lista/main.cpp
+	"Lista.h"
+	<iostream>
+	<string>
+
+1776840682/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/estaticos/Lista/include/Lista.h
+	"../src/Lista.cpp"
+
+1776840993/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/estaticos/Lista/src/Lista.cpp
+
+1777705913source:/home/xdmt/adt/estaticos/Lista/src/Lista.cpp
+	"Lista.h"
+
+1777706634/home/xdmt/adt/estaticos/Lista/include/Lista.h
+
