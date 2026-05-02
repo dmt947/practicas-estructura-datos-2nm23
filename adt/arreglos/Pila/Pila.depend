@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1776835903source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/estaticos/Pila/src/Pila.cpp
+
+1776835792source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/estaticos/Pila/main.cpp
+	"Pila.h"
+	<iostream>
+	<string>
+
+1776835892/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/estaticos/Pila/include/Pila.h
+	"../src/Pila.cpp"
+
+1776835903/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/estaticos/Pila/src/Pila.cpp
+
+1777703769source:/home/xdmt/adt/estaticos/Pila/main.cpp
+	"Pila.h"
+	"PilaT.h"
+	<iostream>
+	<string>
+
+1777704324/home/xdmt/adt/estaticos/Pila/include/Pila.h
+
+1777704280/home/xdmt/adt/estaticos/Pila/include/PilaT.h
+	"Nodo.h"
+	"Pila.h"
+	"../src/PilaT.tpp"
+
+1777701309/home/xdmt/adt/estaticos/Pila/include/Nodo.h
+	"../src/Nodo.tpp"
+
+1777702515/home/xdmt/adt/estaticos/Pila/src/Nodo.tpp
+
+1777703702source:/home/xdmt/adt/estaticos/Pila/src/Pila.cpp
+	"Pila.h"
+
+1777699323/home/xdmt/adt/estaticos/Pila/src/Pila.h
+
+1777704173/home/xdmt/adt/estaticos/Pila/src/PilaT.tpp
+	<iostream>
+
