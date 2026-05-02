@@ -1,0 +1,23 @@
+# depslib dependency file v1.0
+1777708641source:/home/xdmt/adt/Lista/src/Coleccion.cpp
+	"Coleccion.h"
+
+1777708641/home/xdmt/adt/Lista/include/Coleccion.h
+
+1777709239source:/home/xdmt/adt/Lista/main.cpp
+	"Lista.h"
+	<iostream>
+	<string>
+
+1777708777/home/xdmt/adt/Lista/include/Lista.h
+	"Nodo.h"
+	"Coleccion.h"
+	"../src/Lista.tpp"
+
+1777708670/home/xdmt/adt/Lista/include/Nodo.h
+	"../src/Nodo.tpp"
+
+1777708670/home/xdmt/adt/Lista/src/Nodo.tpp
+
+1777708951/home/xdmt/adt/Lista/src/Lista.tpp
+
