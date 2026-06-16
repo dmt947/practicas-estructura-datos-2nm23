@@ -13,13 +13,13 @@ Pila<T>::~Pila()
 }
 
 template <typename T>
-bool Pila<T>::vacia()
+bool Pila<T>::vacia() const
 {
     return tope == nullptr;
 }
 
 template <typename T>
-int Pila<T>::longitud()
+int Pila<T>::longitud() const
 {
     return tam;
 }
@@ -52,7 +52,7 @@ T Pila<T>::pop()
 }
 
 template <typename T>
-const T& Pila<T>::peek()
+const T& Pila<T>::peek() const
 {
     if(vacia())
     {

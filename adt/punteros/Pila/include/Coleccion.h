@@ -8,8 +8,8 @@ public:
     Coleccion();
     virtual ~Coleccion();
 
-    virtual bool vacia() = 0;
-    virtual int longitud() = 0;
+    virtual bool vacia() const = 0;
+    virtual int longitud() const = 0;
 
 protected:
     int tam;

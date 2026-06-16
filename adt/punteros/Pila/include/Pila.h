@@ -11,12 +11,12 @@ public:
     Pila();
     ~Pila();
 
-    bool vacia() override;
-    int longitud() override;
+    bool vacia() const override;
+    int longitud() const override;
 
     bool push(const T& elem);
     T pop();
-    const T& peek();
+    const T& peek() const;
 
 protected:
 
