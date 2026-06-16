@@ -8,18 +8,18 @@ Lista<T>::~Lista()
 {
     while(!vacia())
     {
-        remove(tam-1);
+        remove(0);
     }
 }
 
 template <typename T>
-bool Lista<T>::vacia()
+bool Lista<T>::vacia() const
 {
     return inicio == nullptr;
 }
 
 template <typename T>
-int Lista<T>::longitud()
+int Lista<T>::longitud() const
 {
     return tam;
 }
@@ -57,7 +57,7 @@ bool Lista<T>::add(const T& elem, int pos)
 template <typename T>
 bool Lista<T>::set(int pos, const T& elem)
 {
-    if(pos < 0 || pos > tam)
+    if(pos < 0 || pos >= tam)
     {
         return false;
     }
@@ -81,7 +81,7 @@ T Lista<T>::remove(int pos)
     if(pos == 0)
     {
         aBorrar = inicio;
-        inicio = nullptr;
+        inicio = inicio->siguiente;
     }
     else
     {
@@ -103,7 +103,7 @@ T Lista<T>::remove(int pos)
 template<typename T>
 const T& Lista<T>::get(int pos)
 {
-    if(pos < 0 || pos > tam)
+    if(pos < 0 || pos >= tam)
     {
         static T nulo = T();
         return nulo;

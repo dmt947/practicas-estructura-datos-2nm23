@@ -11,8 +11,8 @@ public:
     Lista();
     ~Lista();
 
-    bool vacia() override;
-    int longitud() override;
+    bool vacia() const override;
+    int longitud() const override;
 
     bool add(const T& elem, int pos);
 
@@ -20,7 +20,7 @@ public:
 
     T remove(int pos);
 
-    const T& get(int pos);
+    const T& get(int pos) const;
 
 protected:
 
