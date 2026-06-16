@@ -101,7 +101,7 @@ T Lista<T>::remove(int pos)
 }
 
 template<typename T>
-const T& Lista<T>::get(int pos)
+const T& Lista<T>::get(int pos) const
 {
     if(pos < 0 || pos >= tam)
     {
