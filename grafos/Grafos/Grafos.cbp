@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Grafos" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Grafos" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add directory="include" />
+					<Add directory="grafos/Grafos/include" />
+				</Compiler>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Grafos" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="include" />
+					<Add directory="grafos/Grafos/include" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+		</Compiler>
+		<Unit filename="../../adt/punteros/Lista/include/Coleccion.h" />
+		<Unit filename="../../adt/punteros/Lista/include/Lista.h" />
+		<Unit filename="../../adt/punteros/Lista/src/Coleccion.cpp" />
+		<Unit filename="../../adt/punteros/Pila/include/Coleccion.h" />
+		<Unit filename="../../adt/punteros/Pila/include/Pila.h" />
+		<Unit filename="../../parser/Parser/include/ArrayNode.h" />
+		<Unit filename="../../parser/Parser/include/JsonParser.h" />
+		<Unit filename="../../parser/Parser/include/JsonValue.h" />
+		<Unit filename="../../parser/Parser/include/ObjectNode.h" />
+		<Unit filename="../../parser/Parser/include/Parser.h" />
+		<Unit filename="../../parser/Parser/include/XmlNode.h" />
+		<Unit filename="../../parser/Parser/include/XmlNodeList.h" />
+		<Unit filename="../../parser/Parser/include/XmlParser.h" />
+		<Unit filename="../../parser/Parser/src/ArrayNode.cpp" />
+		<Unit filename="../../parser/Parser/src/JsonParser.cpp" />
+		<Unit filename="../../parser/Parser/src/JsonValue.cpp" />
+		<Unit filename="../../parser/Parser/src/ObjectNode.cpp" />
+		<Unit filename="../../parser/Parser/src/Parser.cpp" />
+		<Unit filename="../../parser/Parser/src/XmlNode.cpp" />
+		<Unit filename="../../parser/Parser/src/XmlNodeList.cpp" />
+		<Unit filename="../../parser/Parser/src/XmlParser.cpp" />
+		<Unit filename="arbol.json" />
+		<Unit filename="arbol.xml" />
+		<Unit filename="digrafo.json" />
+		<Unit filename="digrafo.xml" />
+		<Unit filename="grafo.json" />
+		<Unit filename="grafo.xml" />
+		<Unit filename="include/Connection.h" />
+		<Unit filename="include/Digraph.h" />
+		<Unit filename="include/DijkstraRow.h" />
+		<Unit filename="include/Edge.h" />
+		<Unit filename="include/Graph.h" />
+		<Unit filename="include/JsonMapLoader.h" />
+		<Unit filename="include/MapLoader.h" />
+		<Unit filename="include/Node.h" />
+		<Unit filename="include/PathFinder.h" />
+		<Unit filename="include/Tree.h" />
+		<Unit filename="include/XmlMapLoader.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/Connection.cpp" />
+		<Unit filename="src/Digraph.cpp" />
+		<Unit filename="src/DijkstraRow.cpp" />
+		<Unit filename="src/Edge.cpp" />
+		<Unit filename="src/Graph.cpp" />
+		<Unit filename="src/JsonMapLoader.cpp" />
+		<Unit filename="src/MapLoader.cpp" />
+		<Unit filename="src/Node.cpp" />
+		<Unit filename="src/PathFinder.cpp" />
+		<Unit filename="src/Tree.cpp" />
+		<Unit filename="src/XmlMapLoader.cpp" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

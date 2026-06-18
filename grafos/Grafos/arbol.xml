@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapa>
+    <nodos>
+        <nodo>A</nodo>
+        <nodo>B</nodo>
+        <nodo>C</nodo>
+        <nodo>D</nodo>
+    </nodos>
+    <aristas>
+        <arista>
+            <nombre>a</nombre>
+            <tiempo>2.0</tiempo>
+            <costo>2.0</costo>
+        </arista>
+        <arista>
+            <nombre>b</nombre>
+            <tiempo>2.0</tiempo>
+            <costo>2.0</costo>
+        </arista>
+        <arista>
+            <nombre>c</nombre>
+            <tiempo>5.0</tiempo>
+            <costo>5.0</costo>
+        </arista>
+    </aristas>
+    <conexiones>
+        <conexion>
+            <origen>A</origen>
+            <destino>B</destino>
+            <via>a</via>
+        </conexion>
+        <conexion>
+            <origen>A</origen>
+            <destino>C</destino>
+            <via>b</via>
+        </conexion>
+        <conexion>
+            <origen>B</origen>
+            <destino>D</destino>
+            <via>c</via>
+        </conexion>
+    </conexiones>
+</mapa>
