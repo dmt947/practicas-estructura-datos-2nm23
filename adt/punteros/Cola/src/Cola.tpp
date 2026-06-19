@@ -13,13 +13,13 @@ Cola<T>::~Cola()
 }
 
 template <typename T>
-bool Cola<T>::vacia()
+bool Cola<T>::vacia() const
 {
     return frente == nullptr;
 }
 
 template <typename T>
-int Cola<T>::longitud()
+int Cola<T>::longitud() const
 {
     return this->tam;
 }
@@ -65,7 +65,7 @@ T Cola<T>::dequeue()
 }
 
 template <typename T>
-const T& Cola<T>::front()
+const T& Cola<T>::front() const
 {
     if(vacia())
     {

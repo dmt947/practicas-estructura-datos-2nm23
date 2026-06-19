@@ -11,12 +11,12 @@ public:
     Cola();
     ~Cola();
 
-    bool vacia() override;
-    int longitud() override;
+    bool vacia() const override;
+    int longitud() const override;
 
     bool enqueue(const T& elem);
     T dequeue();
-    const T& front();
+    const T& front() const;
 
 protected:
 
