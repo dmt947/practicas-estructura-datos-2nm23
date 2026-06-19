@@ -1,13 +1,21 @@
 {
   "nodos": ["A", "B", "C", "D"],
   "aristas": [
-    { "nombre": "a", "tiempo": 4.0, "costo": 10.0 },
+    { "nombre": "a", "tiempo": 10.0, "costo": 15.0 },
+
+    { "nombre": "x", "tiempo": 4.0, "costo": 10.0 },
+    { "nombre": "y", "tiempo": 4.0, "costo": 10.0 },
+    { "nombre": "z", "tiempo": 4.0, "costo": 10.0 },
+
     { "nombre": "b", "tiempo": 3.0, "costo": 5.0 },
     { "nombre": "c", "tiempo": 2.0, "costo": 20.0},
     { "nombre": "d", "tiempo": 3.0, "costo": 15.0}
   ],
   "conexiones": [
     { "origen": "A", "destino": "B", "via": "a" },
+    { "origen": "A", "destino": "A", "via": "x" },
+    { "origen": "B", "destino": "B", "via": "y" },
+    { "origen": "A", "destino": "B", "via": "z" },
     { "origen": "B", "destino": "C", "via": "b" },
     { "origen": "A", "destino": "D", "via": "c" },
     { "origen": "A", "destino": "C", "via": "d" }
