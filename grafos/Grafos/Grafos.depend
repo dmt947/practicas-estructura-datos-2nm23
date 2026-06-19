@@ -16,7 +16,7 @@
 1781589989source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/Edge.cpp
 	"Edge.h"
 
-1781761513source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/Graph.cpp
+1781855903source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/Graph.cpp
 	"Graph.h"
 
 1781591962/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/include/Graph.h
@@ -39,7 +39,7 @@
 
 1781578480/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/punteros/Lista/src/Lista.tpp
 
-1781766867source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/main.cpp
+1781855731source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/main.cpp
 	<iostream>
 	<fstream>
 	<sstream>
@@ -48,6 +48,7 @@
 	"Digraph.h"
 	"Tree.h"
 	"PathFinder.h"
+	"Path.h"
 	"../../../parser/Parser/include/Parser.h"
 	"../../../parser/Parser/include/JsonParser.h"
 	"../../../parser/Parser/include/XmlParser.h"
@@ -61,9 +62,10 @@
 1777714324source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/punteros/Pila/src/Coleccion.cpp
 	"Coleccion.h"
 
-1781761513/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/include/PathFinder.h
+1781849095/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/include/PathFinder.h
 	"Graph.h"
 	"DijkstraRow.h"
+	"Path.h"
 	"../../../adt/punteros/Lista/include/Lista.h"
 	"../../../adt/punteros/Pila/include/Pila.h"
 
@@ -81,13 +83,14 @@
 
 1781582225/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/punteros/Pila/src/Pila.tpp
 
-1781761513source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/DijkstraRow.cpp
+1781848125source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/DijkstraRow.cpp
 	"DijkstraRow.h"
 
-1781761513/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/include/DijkstraRow.h
+1781850854/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/include/DijkstraRow.h
 	"Node.h"
+	"Connection.h"
 
-1781761513source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/PathFinder.cpp
+1781856025source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/PathFinder.cpp
 	"PathFinder.h"
 	<iostream>
 
@@ -95,9 +98,9 @@
 	"MapLoader.h"
 	<iostream>
 
-1781761513/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/include/MapLoader.h
+1781850950/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/include/MapLoader.h
 	"Graph.h"
-	"../../JsonParser/include/JsonValue.h"
+	"../../../parser/Parser/include/JsonValue.h"
 
 1781573516/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/JsonParser/include/JsonValue.h
 	"ArrayNode.h"
@@ -205,4 +208,12 @@
 
 1781763087source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/parser/Parser/src/XmlNode.cpp
 	"XmlNode.h"
+
+1781856025source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/Path.cpp
+	"Path.h"
+
+1781856025/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/include/Path.h
+	"Node.h"
+	"Edge.h"
+	"../../../adt/punteros/Lista/include/Lista.h"
 
