@@ -7,6 +7,7 @@
 #include "Digraph.h"
 #include "Tree.h"
 #include "PathFinder.h"
+#include "Path.h"
 
 #include "../../../parser/Parser/include/Parser.h"
 #include "../../../parser/Parser/include/JsonParser.h"
@@ -149,8 +150,14 @@ int main()
     if (!loaderObj->fillGraph(valor, miMapa))
     {
         std::cerr << "[ERROR]: El cargador fallo al mapear los datos al grafo." << std::endl;
-        if (tipoFormato == "json") delete (JsonValue*)valor;
-        else delete (XmlNode*)valor;
+        if (tipoFormato == "json")
+        {
+            delete (JsonValue*)valor;
+        }
+        else
+        {
+            delete (XmlNode*)valor;
+        }
         delete parserObj;
         delete loaderObj;
         delete miMapa;
@@ -172,19 +179,45 @@ int main()
     std::cout << "[LOADER]:Grafo cargado exitosamente." << std::endl;
 
     PathFinder buscador;
-    std::string origen, destino, criterio;
-    int c;
+    std::string origen, destino;
     bool continuar = true;
 
     while (continuar)
     {
         std::cout << "\n---------------------------------------------------------" << std::endl;
-        std::cout << "ELEMENTOS DISPONIBLES EN LA ESTRUCTURA:" << std::endl;
+
+        if(opcionEstructura == "1")
+        {
+            std::cout << "GRAFO:" << std::endl;
+        }
+        else if(opcionEstructura == "2")
+        {
+            std::cout << "DIGRAFO:" << std::endl;
+        }
+        else if(opcionEstructura == "3")
+        {
+            std::cout << "ARBOL:" << std::endl;
+        }
 
         const Lista<Node*>& listaNodos = miMapa->getNodes();
+        const Lista<Connection*>& listaConexiones = miMapa->getConnections();
+
+
         for (int i = 0; i < listaNodos.longitud(); i++)
         {
-            std::cout << " * " << listaNodos.get(i)->getName() << std::endl;
+            Node* nodo = listaNodos.get(i);
+            std::cout << "> NODO: " << nodo->getName() << std::endl;
+            for(int j = 0; j < listaConexiones.longitud(); j++)
+            {
+                Connection* conexion = listaConexiones.get(j);
+                if(conexion->getOrg() == nodo)
+                {
+                    Edge* via = conexion->getEdge();
+                    Node* dest = conexion->getDest();
+                    std::cout << "--> Conexion a NODO: " << dest->getName() << " | VIA: " << via->getName() << " | TIEMPO: " << via->getTime() << " | COSTO: " << via->getCost() << std::endl;
+                }
+            }
+
         }
         std::cout << "---------------------------------------------------------" << std::endl;
         std::cout << "(Escribe 'x' para salir)\n" << std::endl;
@@ -211,48 +244,36 @@ int main()
             destino = "A";
         }
 
-        std::cout << "¿Cual es el criterio? [tiempo / costo] (default: tiempo): ";
-        std::getline(std::cin, criterio);
-        if(criterio == "tiempo" || criterio == "")
-        {
-            c = 1;
-        }
-        else if(criterio == "costo")
-        {
-            c = 0;
-        }
-        else
-        {
-            std::cout << "Criterio invalido" << std::endl;
-            break;
-        }
-
         std::cout << "\n[PATHFINDER] Procesando ruta" << std::endl;
-        Pila<Node*>* ruta = buscador.shortestPath(miMapa, origen.c_str(), destino.c_str(), c);
 
-        if (ruta != nullptr)
+        Path* rutaC = buscador.shortestPath(miMapa, origen.c_str(), destino.c_str(), 0);
+        Path* rutaD = buscador.shortestPath(miMapa, origen.c_str(), destino.c_str(), 1);
+
+        if (rutaC != nullptr && rutaD != nullptr)
         {
-            std::cout << "\n>>> RUTA MAS CORTA ( ";
-            if(c == 1)
-            {
-                std::cout << "TIEMPO" << " )<<<" << std::endl;
-                std::cout << "Tiempo de viaje total: ";
-            }
-            else
-            {
-                std::cout << "COSTO" << " )<<<" << std::endl;
-                std::cout << "Costo total: ";
-            }
-            std::cout << buscador.getTotalDistance() << std::endl;
-            std::cout << "Camino: ";
+            std::cout << "\n>>> RUTA MAS RAPIDA DE '" << origen.c_str() << "' A '" << destino.c_str()<<"' <<<" << std::endl;
+            std::cout << "> TIEMPO: " << rutaD->getTotalDistance() << std::endl;
+            std::cout << "> COSTO: " << rutaD->getTotalCost() << std::endl;
+            std::cout << "> RUTA: " << rutaD->getTravelledNodes().get(0)->getName();
 
-            while (!ruta->vacia())
+            for(int i = 0; i < rutaD->getTravelledEdges().longitud(); i++)
             {
-                std::cout << ruta->pop()->getName();
-                if (!ruta->vacia()) std::cout << " -> ";
+                std::cout << " -- VIA: " << rutaD->getTravelledEdges().get(i)->getName() << " -> " << rutaD->getTravelledNodes().get(i+1)->getName();
             }
             std::cout << " -> FIN" << std::endl;
-            delete ruta;
+            delete rutaD;
+
+            std::cout << "\n>>> RUTA MAS BARATA DE '" << origen.c_str() << "' A '" << destino.c_str()<<"' <<<" << std::endl;
+            std::cout << ">TIEMPO: " << rutaC->getTotalDistance() << std::endl;
+            std::cout << ">COSTO: " << rutaC->getTotalCost() << std::endl;
+            std::cout << ">RUTA: " << rutaC->getTravelledNodes().get(0)->getName();
+
+            for(int i = 0; i < rutaC->getTravelledEdges().longitud(); i++)
+            {
+                std::cout << " -- VIA: " << rutaC->getTravelledEdges().get(i)->getName() << " -> " << rutaC->getTravelledNodes().get(i+1)->getName();
+            }
+            std::cout << " -> FIN" << std::endl;
+            delete rutaC;
         }
         else
         {
