@@ -103,10 +103,18 @@ bool Graph::connectNodes(const char* from, const char* to, const char* via)
         return false;
     }
 
-    Connection* departure = new Connection(org, dest, edge);
-    Connection* back = new Connection(dest, org, edge);
-    connections.add(departure, connections.longitud());
-    connections.add(back, connections.longitud());
+    if(stringsEqual(from, to))
+    {
+        Connection* loop = new Connection(org, dest, edge);
+        connections.add(loop, connections.longitud());
+    }
+    else
+    {
+        Connection* departure = new Connection(org, dest, edge);
+        Connection* back = new Connection(dest, org, edge);
+        connections.add(departure, connections.longitud());
+        connections.add(back, connections.longitud());
+    }
 
     return true;
 }
