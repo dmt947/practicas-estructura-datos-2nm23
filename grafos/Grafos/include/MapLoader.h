@@ -2,7 +2,7 @@
 #define MAPLOADER_H
 
 #include "Graph.h"
-#include "../../JsonParser/include/JsonValue.h"
+#include "../../../parser/Parser/include/JsonValue.h"
 
 
 class MapLoader
