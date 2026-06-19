@@ -5,7 +5,7 @@ PathFinder::PathFinder() {}
 
 PathFinder::~PathFinder() {}
 
-Pila<Node*>* PathFinder::shortestPath(const Graph* graph, const char* origin, const char *destination, int criteria)
+Path* PathFinder::shortestPath(const Graph* graph, const char* origin, const char *destination, int criteria)
 {
     const Lista<Node*>& nodes = graph->getNodes();
     const Lista<Connection*>& connections = graph->getConnections();
@@ -30,22 +30,22 @@ Pila<Node*>* PathFinder::shortestPath(const Graph* graph, const char* origin, co
     for(int i = 0; i < numNodes; i++)
     {
         Node* n = nodes.get(i);
-        double initialDist = (n == org) ? 0.0 : INF;
-        DijkstraRow* row = new DijkstraRow(n, initialDist, nullptr, false);
+        double initialWeight = (n == org) ? 0.0 : INF;
+        DijkstraRow* row = new DijkstraRow(n, initialWeight, nullptr, nullptr, false);
         table.add(row, table.longitud());
     }
 
     for(int count = 0; count < numNodes; count++)
     {
         DijkstraRow* currentCol = nullptr;
-        double minDist = INF;
+        double minWeight = INF;
 
         for(int i = 0; i < table.longitud(); i++)
         {
             DijkstraRow* row = table.get(i);
-            if(!row->isVisited() && row->getDistance() < minDist)
+            if(!row->isVisited() && row->getWeight() < minWeight)
             {
-                minDist = row->getDistance();
+                minWeight = row->getWeight();
                 currentCol = row;
             }
         }
@@ -79,13 +79,16 @@ Pila<Node*>* PathFinder::shortestPath(const Graph* graph, const char* origin, co
                 }
                 if(vCol != nullptr && !vCol->isVisited())
                 {
-                    double weight = (criteria == 1) ? conn->getEdge()->getTime() : conn->getEdge()->getCost();
-                    double altDist = currentCol->getDistance() + weight;
+                    double edgeWeight = (criteria == 1) ? conn->getEdge()->getTime() : conn->getEdge()->getCost();
+                    double altWeight = currentCol->getWeight() + edgeWeight;
 
-                    if(altDist < vCol->getDistance())
+                    if(altWeight < vCol->getWeight())
                     {
-                        vCol->setDistance(altDist);
-                        vCol->setPrevious(u);
+                        vCol->setWeight(altWeight);
+                        vCol->setPreviousNode(u);
+                        vCol->setPreviousConnection(conn);
+                        vCol->setAccumulatedCost(currentCol->getAccumulatedCost() + conn->getEdge()->getCost());
+                        vCol->setAccumulatedDistance(currentCol->getAccumulatedDistance() + conn->getEdge()->getTime());
                     }
                 }
             }
@@ -101,7 +104,7 @@ Pila<Node*>* PathFinder::shortestPath(const Graph* graph, const char* origin, co
         }
     }
 
-    if(destCol == nullptr || destCol->getDistance() == INF)
+    if(destCol == nullptr || destCol->getWeight() == INF)
     {
         std::cerr << "[ERROR]: No hay ruta disponible" << std::endl;
         while(!table.vacia())
@@ -111,32 +114,55 @@ Pila<Node*>* PathFinder::shortestPath(const Graph* graph, const char* origin, co
         return nullptr;
     }
 
-    Pila<Node*> supportedPath;
-    Node* iter = dest;
+    Lista<Node*>* travelledNodes = new Lista<Node*>;
+    Lista<Edge*>* travelledEdges = new Lista<Edge*>;
 
-    while(iter != nullptr)
+    DijkstraRow* iterCol = destCol;
+
+    Pila<Node*> stackNodes;
+    Pila<Edge*> stackEdges;
+
+    while(iterCol != nullptr && iterCol->getNode() != org)
     {
-        supportedPath.push(iter);
-        Node* root = nullptr;
-        for(int i = 0; i < table.longitud(); i++)
+        stackNodes.push(iterCol->getNode());
+
+        if(iterCol->getPreviousConnection() != nullptr)
         {
-            if(table.get(i)->getNode() == iter)
+            stackEdges.push(iterCol->getPreviousConnection()->getEdge());
+        }
+
+        Node* prevNode = iterCol->getPreviousNode();
+        iterCol = nullptr;
+
+        if(prevNode != nullptr)
+        {
+            for(int i = 0; i < table.longitud(); i++)
             {
-                root = table.get(i)->getPrevious();
-                break;
+                if(table.get(i)->getNode() == prevNode)
+                {
+                    iterCol = table.get(i);
+                    break;
+                }
             }
         }
-        iter = root;
     }
 
-    setTotalDistance(destCol->getDistance());
+    travelledNodes->add(org, travelledNodes->longitud());
 
-    Pila<Node*>* finalPath = new Pila<Node*>();
-
-    while(!supportedPath.vacia())
+    while(!stackEdges.vacia())
     {
-        finalPath->push(supportedPath.pop());
+        travelledEdges->add(stackEdges.pop(), travelledEdges->longitud());
     }
+
+    while(!stackNodes.vacia())
+    {
+        travelledNodes->add(stackNodes.pop(), travelledNodes->longitud());
+    }
+
+    double totalD = destCol->getAccumulatedDistance();
+    double totalC = destCol->getAccumulatedCost();
+
+    Path* finalPath = new Path(org, totalC, totalD, travelledNodes, travelledEdges);
 
     while (!table.vacia())
     {
@@ -144,14 +170,4 @@ Pila<Node*>* PathFinder::shortestPath(const Graph* graph, const char* origin, co
     }
 
     return finalPath;
-}
-
-void PathFinder::setTotalDistance(double totalDist)
-{
-    totalDistance = totalDist;
-}
-
-double PathFinder::getTotalDistance() const
-{
-    return totalDistance;
 }
