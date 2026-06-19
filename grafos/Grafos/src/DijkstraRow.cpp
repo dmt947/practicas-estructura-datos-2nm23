@@ -1,11 +1,15 @@
 #include "DijkstraRow.h"
 
-DijkstraRow::DijkstraRow(Node* n, double dist, Node* prev, bool vis)
+DijkstraRow::DijkstraRow(Node* n, double initW, Node* prevN, Connection* prevC, bool vis)
 {
     node = n;
-    distance = dist;
-    previous = prev;
+    weight = initW;
+    previousNode = prevN;
+    previousConnection = prevC;
     visited = vis;
+
+    accumulatedCost = (initW == 0.0) ? 0.0 : 1e9;
+    accumulatedDistance = (initW == 0.0) ? 0.0 : 1e9;
 }
 
 DijkstraRow::~DijkstraRow() {}
@@ -15,32 +19,56 @@ Node* DijkstraRow::getNode() const
     return node;
 }
 
-double DijkstraRow::getDistance() const
+double DijkstraRow::getWeight() const
 {
-    return distance;
+    return weight;
+}
+void DijkstraRow::setWeight(double w)
+{
+    weight = w;
 }
 
-Node* DijkstraRow::getPrevious() const
+Node* DijkstraRow::getPreviousNode() const
 {
-    return previous;
+    return previousNode;
+}
+void DijkstraRow::setPreviousNode(Node* prevN)
+{
+    previousNode = prevN;
+}
+
+Connection* DijkstraRow::getPreviousConnection() const
+{
+    return previousConnection;
+}
+void DijkstraRow::setPreviousConnection(Connection* prevC)
+{
+    previousConnection = prevC;
 }
 
 bool DijkstraRow::isVisited() const
 {
     return visited;
 }
-
-void DijkstraRow::setDistance(double dist)
+void DijkstraRow::setVisited(bool visit)
 {
-    distance = dist;
+    visited = visit;
 }
 
-void DijkstraRow::setPrevious(Node* prev)
+double DijkstraRow::getAccumulatedDistance() const
 {
-    previous = prev;
+    return accumulatedDistance;
+}
+void DijkstraRow::setAccumulatedDistance(double dist)
+{
+    accumulatedDistance = dist;
 }
 
-void DijkstraRow::setVisited(bool vis)
+double DijkstraRow::getAccumulatedCost() const
 {
-    visited = vis;
+    return accumulatedCost;
+}
+void DijkstraRow::setAccumulatedCost(double cost)
+{
+    accumulatedCost = cost;
 }
