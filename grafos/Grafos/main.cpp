@@ -16,6 +16,9 @@
 #include "MapLoader.h"
 #include "JsonMapLoader.h"
 #include "XmlMapLoader.h"
+#include "MapSaver.h"
+#include "JsonMapSaver.h"
+#include "XmlMapSaver.h"
 
 int main()
 {
@@ -34,18 +37,21 @@ int main()
 
     Parser* parserObj = nullptr;
     MapLoader* loaderObj = nullptr;
+    MapSaver* saverObj = nullptr;
     std::string nombreArchivo = "";
     std::string tipoFormato = "";
 
     if (opcionFormato == "1")
     {
         loaderObj = new JsonMapLoader();
+        saverObj = new JsonMapSaver();
         tipoFormato = "json";
         std::cout << "\n[FORMATO]: Has seleccionado JSON." << std::endl;
     }
     else if (opcionFormato == "2")
     {
         loaderObj = new XmlMapLoader();
+        saverObj = new XmlMapSaver();
         tipoFormato = "xml";
         std::cout << "\n[FORMATO]: Has seleccionado XML." << std::endl;
     }
@@ -140,6 +146,7 @@ int main()
         }
         delete parserObj;
         delete loaderObj;
+        delete saverObj;
         delete miMapa;
         return 1;
     }
@@ -160,6 +167,7 @@ int main()
         }
         delete parserObj;
         delete loaderObj;
+        delete saverObj;
         delete miMapa;
         return 1;
     }
@@ -179,10 +187,9 @@ int main()
     std::cout << "[LOADER]:Grafo cargado exitosamente." << std::endl;
 
     PathFinder buscador;
-    std::string origen, destino;
-    bool continuar = true;
+    std::string eleccion, operacion, componente, origen, destino;
 
-    while (continuar)
+    while (eleccion != "X" || eleccion != "x")
     {
         std::cout << "\n---------------------------------------------------------" << std::endl;
 
@@ -222,65 +229,238 @@ int main()
         std::cout << "---------------------------------------------------------" << std::endl;
         std::cout << "(Escribe 'x' para salir)\n" << std::endl;
 
-        std::cout << "¿Donde estas? [A / B / C / D] (default: A): ";
-        std::getline(std::cin, origen);
-        if (origen == "x" || origen == "X")
+        std::cout << "¿Que vas a hacer? [consultar/modificar/guardar] (default: consultar)";
+        std::getline(std::cin, eleccion);
+        if(eleccion == "modificar" || eleccion == "m")
+        {
+            do
+            {
+                std::cout << "NOTA: Cualquier cambio realizado se mantendra solamente en esta ejecucion hasta que se guarde en el archivo abierto." << std::endl;
+                std::cout << "      Para esto se debe seleccionar la opcion 'guardar' en el menu anterior." << std::endl;
+                std::cout << "¿Que deseas hacer? [añadir/eliminar] (default: añadir)";
+                std::getline(std::cin, operacion);
+                if(operacion == "añadir" || operacion == "a" || operacion == "")
+                {
+                    std::cout << "¿Que deseas añadir? [nodo/arista/conexion] (default: nodo): ";
+                    std::getline(std::cin, componente);
+                    if(componente == "nodo" || componente == "n" || componente == "")
+                    {
+                        std::cout << "¿Cual es el nombre? ";
+                        std::string nombreNodo;
+                        std::getline(std::cin, nombreNodo);
+                        if(nombreNodo == "")
+                        {
+                            std::cerr << "Nombre invalido." << std::endl;
+                            break;
+                        }
+                        if(miMapa->addNode(nombreNodo.c_str()))
+                        {
+                            std::cout << "Nodo: " << nombreNodo << " agregado con exito" << std::endl;
+                        }
+                        else
+                        {
+                            std::cout << "Error al agregar" << std::endl;
+                        }
+                    }
+                    else if(componente == "arista" || componente=="a")
+                    {
+                        std::string nombreArista;
+                        double tiempo, costo;
+
+                        std::cout << "¿Cual es el nombre? ";
+                        std::getline(std::cin, nombreArista);
+                        std::cout << "¿Cual es el tiempo? ";
+                        std::cin >> tiempo;
+                        std::cout << "¿Cual es el costo? ";
+                        std::cin >> costo;
+                        std::cin.ignore();
+                        if(nombreArista == "")
+                        {
+                            std::cerr << "Parametros invalidos." << std::endl;
+                            break;
+                        }
+                        if(miMapa->addEdge(nombreArista.c_str(), tiempo, costo))
+                        {
+                            std::cout << "Arista: " << nombreArista << " agregada con exito." << std::endl;
+                        }
+                        else
+                        {
+                            std::cerr<<"Error al agregar"<<std::endl;
+                        }
+
+                    }
+                    else if(componente == "conexion"||componente=="c")
+                    {
+                        std::string nombreOrigen, nombreDestino, nombreArista;
+                        std::cout << "¿Cual es el origen? ";
+                        std::getline(std::cin, nombreOrigen);
+                        std::cout << "¿Cual es el destino? ";
+                        std::getline(std::cin, nombreDestino);
+                        std::cout << "¿Cual es el nombre de la via? ";
+                        std::getline(std::cin, nombreArista);
+                        if(nombreOrigen == "" || nombreDestino == "" || nombreArista == "")
+                        {
+                            std::cout << "Parametros invalidos" << std::endl;
+                            break;
+                        }
+                        if(miMapa->connectNodes(nombreOrigen.c_str(), nombreDestino.c_str(), nombreArista.c_str()))
+                        {
+                            std::cout << "Conexion de: " << nombreOrigen << " a: " << nombreDestino << " via: " << nombreArista << std::endl;
+                        }
+                        else
+                        {
+                            std::cerr<<"Error al agregar"<<std::endl;
+                        }
+                    }
+                }
+                else if(operacion == "eliminar" || operacion == "e")
+                {
+                    std::cout << "¿Que deseas eliminar? [nodo/arista/conexion] (default: nodo)";
+                    std::getline(std::cin, componente);
+                    if(componente == "nodo"||componente=="n" || componente == "")
+                    {
+                        std::cout << "¿Cual es el nombre? ";
+                        std::string nombreNodo;
+                        std::getline(std::cin, nombreNodo);
+                        if(nombreNodo == "")
+                        {
+                            std::cerr << "Nombre invalido." << std::endl;
+                            break;
+                        }
+                        if(miMapa->removeNode(nombreNodo.c_str()))
+                        {
+                            std::cout << "Nodo: " << nombreNodo << " elminado con exito" << std::endl;
+                        }
+                        else
+                        {
+                            std::cout << "Error al eliminar" << std::endl;
+                        }
+                    }
+                    else if(componente == "arista"||componente=="a")
+                    {
+                        std::string nombreArista;
+
+                        std::cout << "¿Cual es el nombre? ";
+                        std::getline(std::cin, nombreArista);
+                        if(nombreArista == "")
+                        {
+                            std::cerr << "Parametros invalidos." << std::endl;
+                            break;
+                        }
+                        if(miMapa->removeEdge(nombreArista.c_str()))
+                        {
+                            std::cout << "Arista: " << nombreArista << " eliminada con exito." << std::endl;
+                        }
+                        else
+                        {
+                            std::cerr<<"Error al eliminar"<<std::endl;
+                        }
+
+                    }
+                    else if(componente == "conexion"||componente=="c")
+                    {
+                        std::string nombreOrigen, nombreDestino, nombreArista;
+                        std::cout << "¿Cual es el origen? ";
+                        std::getline(std::cin, nombreOrigen);
+                        std::cout << "¿Cual es el destino? ";
+                        std::getline(std::cin, nombreDestino);
+                        std::cout << "¿Cual es el nombre de la via? ";
+                        std::getline(std::cin, nombreArista);
+                        if(nombreOrigen == "" || nombreDestino == "" || nombreArista == "")
+                        {
+                            std::cout << "Parametros invalidos" << std::endl;
+                            break;
+                        }
+                        if(miMapa->removeConnection(nombreOrigen.c_str(), nombreDestino.c_str(), nombreArista.c_str()))
+                        {
+                            std::cout << "Conexion eliminada "<< std::endl;
+                        }
+                        else
+                        {
+                            std::cerr<<"Error al eliminar"<<std::endl;
+                        }
+                    }
+                }
+                std::cout<<"¿Deseas seguir modificando? [y/n]:";
+                std::getline(std::cin, eleccion);
+            }
+            while(eleccion != "n");
+        }
+        else if(eleccion == "consultar" || eleccion == "")
+        {
+            do
+            {
+                std::cout << "¿Donde estas? [CASE SENSITIVE]: ";
+                std::getline(std::cin, origen);
+                std::cout << "¿A donde quieres ir? [CASE SENSITIVE]: ";
+                std::getline(std::cin, destino);
+                if (origen == "" || destino == "")
+                {
+                    std::cerr << "Parametros invalidos"<<std::endl;
+                }
+
+
+                std::cout << "\n[PATHFINDER] Procesando ruta" << std::endl;
+
+                Path* rutaC = buscador.shortestPath(miMapa, origen.c_str(), destino.c_str(), 0);
+                Path* rutaD = buscador.shortestPath(miMapa, origen.c_str(), destino.c_str(), 1);
+
+                if (rutaC != nullptr && rutaD != nullptr)
+                {
+                    std::cout << "\n>>> RUTA MAS RAPIDA DE '" << origen.c_str() << "' A '" << destino.c_str()<<"' <<<" << std::endl;
+                    std::cout << "> TIEMPO: " << rutaD->getTotalDistance() << std::endl;
+                    std::cout << "> COSTO: " << rutaD->getTotalCost() << std::endl;
+                    std::cout << "> RUTA: " << rutaD->getTravelledNodes().get(0)->getName();
+
+                    for(int i = 0; i < rutaD->getTravelledEdges().longitud(); i++)
+                    {
+                        std::cout << " -- VIA: " << rutaD->getTravelledEdges().get(i)->getName() << " -> " << rutaD->getTravelledNodes().get(i+1)->getName();
+                    }
+                    std::cout << " -> FIN" << std::endl;
+                    delete rutaD;
+
+                    std::cout << "\n>>> RUTA MAS BARATA DE '" << origen.c_str() << "' A '" << destino.c_str()<<"' <<<" << std::endl;
+                    std::cout << ">TIEMPO: " << rutaC->getTotalDistance() << std::endl;
+                    std::cout << ">COSTO: " << rutaC->getTotalCost() << std::endl;
+                    std::cout << ">RUTA: " << rutaC->getTravelledNodes().get(0)->getName();
+
+                    for(int i = 0; i < rutaC->getTravelledEdges().longitud(); i++)
+                    {
+                        std::cout << " -- VIA: " << rutaC->getTravelledEdges().get(i)->getName() << " -> " << rutaC->getTravelledNodes().get(i+1)->getName();
+                    }
+                    std::cout << " -> FIN" << std::endl;
+                    delete rutaC;
+                }
+                else
+                {
+                    std::cout << "\n[PATHFINDER]: No existe una ruta valida desde '" << origen << "' hasta '" << destino << "' en esta estructura." << std::endl;
+                }
+                std::cout << "¿Deseas seguir consultando? [y/n]: ";
+                std::getline(std::cin, eleccion);
+            }
+            while(eleccion!="n");
+        }
+        else if(eleccion == "guardar" || eleccion == "g")
+        {
+            std::cout << "[SAVER]: Guardando datos en '" << nombreArchivo<<"'..."<<std::endl;
+            if(saverObj->saveGraph(nombreArchivo.c_str(),miMapa))
+            {
+                std::cout << "[SAVER]: Datos guardados exitosamente" <<std::endl;
+            }
+            else
+            {
+                std::cerr << "[SAVER]: No se pudieron guardar los datos en el archivo" <<std::endl;
+            }
+            std::cout << "Aceptar...";
+            std::cin.ignore();
+        }
+        else if(eleccion == "x" || eleccion == "X")
         {
             break;
-        }
-        else if (origen == "")
-        {
-            origen = "A";
-        }
-
-        std::cout << "¿A donde quieres ir? [A / B / C / D] (default: A):";
-        std::getline(std::cin, destino);
-        if (destino == "x" || destino == "X")
-        {
-            break;
-        }
-        else if (destino == "")
-        {
-            destino = "A";
-        }
-
-        std::cout << "\n[PATHFINDER] Procesando ruta" << std::endl;
-
-        Path* rutaC = buscador.shortestPath(miMapa, origen.c_str(), destino.c_str(), 0);
-        Path* rutaD = buscador.shortestPath(miMapa, origen.c_str(), destino.c_str(), 1);
-
-        if (rutaC != nullptr && rutaD != nullptr)
-        {
-            std::cout << "\n>>> RUTA MAS RAPIDA DE '" << origen.c_str() << "' A '" << destino.c_str()<<"' <<<" << std::endl;
-            std::cout << "> TIEMPO: " << rutaD->getTotalDistance() << std::endl;
-            std::cout << "> COSTO: " << rutaD->getTotalCost() << std::endl;
-            std::cout << "> RUTA: " << rutaD->getTravelledNodes().get(0)->getName();
-
-            for(int i = 0; i < rutaD->getTravelledEdges().longitud(); i++)
-            {
-                std::cout << " -- VIA: " << rutaD->getTravelledEdges().get(i)->getName() << " -> " << rutaD->getTravelledNodes().get(i+1)->getName();
-            }
-            std::cout << " -> FIN" << std::endl;
-            delete rutaD;
-
-            std::cout << "\n>>> RUTA MAS BARATA DE '" << origen.c_str() << "' A '" << destino.c_str()<<"' <<<" << std::endl;
-            std::cout << ">TIEMPO: " << rutaC->getTotalDistance() << std::endl;
-            std::cout << ">COSTO: " << rutaC->getTotalCost() << std::endl;
-            std::cout << ">RUTA: " << rutaC->getTravelledNodes().get(0)->getName();
-
-            for(int i = 0; i < rutaC->getTravelledEdges().longitud(); i++)
-            {
-                std::cout << " -- VIA: " << rutaC->getTravelledEdges().get(i)->getName() << " -> " << rutaC->getTravelledNodes().get(i+1)->getName();
-            }
-            std::cout << " -> FIN" << std::endl;
-            delete rutaC;
-        }
-        else
-        {
-            std::cout << "\n[PATHFINDER]: No existe una ruta valida desde '" << origen << "' hasta '" << destino << "' en esta estructura." << std::endl;
         }
     }
     delete miMapa;
+    delete saverObj;
 
     std::cout << "[FIN]: Programa finalizado con éxito." << std::endl;
     return 0;

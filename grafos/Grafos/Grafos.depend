@@ -16,10 +16,11 @@
 1781589989source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/Edge.cpp
 	"Edge.h"
 
-1781855903source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/Graph.cpp
+1782037040source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/Graph.cpp
 	"Graph.h"
+	<iostream>
 
-1781591962/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/include/Graph.h
+1782035628/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/include/Graph.h
 	"Node.h"
 	"Edge.h"
 	"Connection.h"
@@ -37,9 +38,9 @@
 
 1781578295/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/punteros/Lista/include/Coleccion.h
 
-1781578480/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/punteros/Lista/src/Lista.tpp
+1782036908/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/punteros/Lista/src/Lista.tpp
 
-1781855731source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/main.cpp
+1782039080source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/main.cpp
 	<iostream>
 	<fstream>
 	<sstream>
@@ -55,6 +56,9 @@
 	"MapLoader.h"
 	"JsonMapLoader.h"
 	"XmlMapLoader.h"
+	"MapSaver.h"
+	"JsonMapSaver.h"
+	"XmlMapSaver.h"
 
 1777714324source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/adt/punteros/Lista/src/Coleccion.cpp
 	"Coleccion.h"
@@ -216,4 +220,27 @@
 	"Node.h"
 	"Edge.h"
 	"../../../adt/punteros/Lista/include/Lista.h"
+
+1782040165source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/JsonMapSaver.cpp
+	"JsonMapSaver.h"
+	<string>
+	<iostream>
+	<fstream>
+
+1782033297/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/include/JsonMapSaver.h
+	"MapSaver.h"
+
+1782033068/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/include/MapSaver.h
+	"Graph.h"
+
+1782033068source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/MapSaver.cpp
+	"MapSaver.h"
+
+1782035365source:/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/src/XmlMapSaver.cpp
+	"XmlMapSaver.h"
+	<iostream>
+	<fstream>
+
+1782033916/home/xdmt/projects/cpp/estruc_datos/2do_parcial/practicas-estructura-datos-2nm23/grafos/Grafos/include/XmlMapSaver.h
+	"MapSaver.h"
 

@@ -68,12 +68,15 @@
 		<Unit filename="include/Edge.h" />
 		<Unit filename="include/Graph.h" />
 		<Unit filename="include/JsonMapLoader.h" />
+		<Unit filename="include/JsonMapSaver.h" />
 		<Unit filename="include/MapLoader.h" />
+		<Unit filename="include/MapSaver.h" />
 		<Unit filename="include/Node.h" />
 		<Unit filename="include/Path.h" />
 		<Unit filename="include/PathFinder.h" />
 		<Unit filename="include/Tree.h" />
 		<Unit filename="include/XmlMapLoader.h" />
+		<Unit filename="include/XmlMapSaver.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/Connection.cpp" />
 		<Unit filename="src/Digraph.cpp" />
@@ -81,12 +84,15 @@
 		<Unit filename="src/Edge.cpp" />
 		<Unit filename="src/Graph.cpp" />
 		<Unit filename="src/JsonMapLoader.cpp" />
+		<Unit filename="src/JsonMapSaver.cpp" />
 		<Unit filename="src/MapLoader.cpp" />
+		<Unit filename="src/MapSaver.cpp" />
 		<Unit filename="src/Node.cpp" />
 		<Unit filename="src/Path.cpp" />
 		<Unit filename="src/PathFinder.cpp" />
 		<Unit filename="src/Tree.cpp" />
 		<Unit filename="src/XmlMapLoader.cpp" />
+		<Unit filename="src/XmlMapSaver.cpp" />
 		<Extensions />
 	</Project>
 </CodeBlocks_project_file>
