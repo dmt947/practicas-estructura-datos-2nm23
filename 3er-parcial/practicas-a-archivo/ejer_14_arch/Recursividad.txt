@@ -1,0 +1,12 @@
+RECURSIVIDAD
+=========================================
+
+1. Factorial de 5:
+   Resultado: 120
+
+2. Numero de Fibonacci en la posicion 7:
+   Resultado: 13
+
+3. Calculadora (Suma sucesiva recursiva):
+   Elementos: 10 20 30 40 
+   Resultado Total: 100
