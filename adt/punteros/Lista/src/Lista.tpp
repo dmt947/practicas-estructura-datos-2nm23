@@ -90,7 +90,7 @@ T Lista<T>::remove(int pos)
         {
             anterior = anterior->siguiente;
         }
-        Nodo<T>* aBorrar = anterior->siguiente;
+        aBorrar = anterior->siguiente;
         anterior->siguiente = aBorrar->siguiente;
     }
 
