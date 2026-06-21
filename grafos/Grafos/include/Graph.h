@@ -23,6 +23,10 @@ public:
     const Lista<Edge*>& getEdges() const;
     const Lista<Connection*>& getConnections() const;
 
+    bool removeNode(const char* name);
+    bool removeEdge(const char* name);
+    bool removeConnection(const char* org, const char* dest, const char* edge);
+
 protected:
     Lista<Node*> nodes;
     Lista<Edge*> edges;

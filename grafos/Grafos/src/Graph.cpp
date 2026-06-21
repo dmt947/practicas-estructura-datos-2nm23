@@ -1,4 +1,5 @@
 #include "Graph.h"
+#include <iostream>
 
 bool Graph::stringsEqual(const char* s1, const char* s2) const
 {
@@ -141,6 +142,98 @@ bool Graph::hasIncomingConnection(const char* nodeName) const
     {
         if(stringsEqual(connections.get(i)->getDest()->getName(), nodeName))
         {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Graph::removeNode(const char* name)
+{
+    Node* node = findNode(name);
+    if(node == nullptr)
+    {
+        return false;
+    }
+    for(int i = 0; i<connections.longitud(); i++)
+    {
+        Connection* conn = connections.get(i);
+        if(conn->getOrg() == node || conn->getDest()==node)
+        {
+            delete connections.remove(i);
+            i--;
+
+        }
+    }
+
+    for(int i = 0; i<nodes.longitud(); i++)
+    {
+        if(nodes.get(i) == node)
+        {
+            delete nodes.remove(i);
+            return true;
+        }
+    }
+}
+
+bool Graph::removeEdge(const char* name)
+{
+    Edge* edge = nullptr;
+    int iE = -1;
+    for(int i = 0; i <edges.longitud(); i++)
+    {
+        if(stringsEqual(edges.get(i)->getName(), name))
+        {
+            edge = edges.get(i);
+            iE = i;
+            break;
+        }
+    }
+    if(edge == nullptr)
+    {
+        return false;
+    }
+
+    for(int i = 0; i <connections.longitud(); i++)
+{
+    Connection* conn = connections.get(i);
+        if(conn->getEdge() == edge)
+        {
+            delete connections.remove(i);
+            i--;
+        }
+    }
+    if(iE != -1)
+{
+    delete edges.remove(iE);
+        return true;
+    }
+}
+
+bool Graph::removeConnection(const char* org, const char* dest, const char* edge)
+{
+    if(edge == nullptr){
+        return false;
+    }
+    Edge* e = nullptr;
+    for(int i = 0; i < edges.longitud(); i++){
+        if(stringsEqual(edges.get(i)->getName(),edge)){
+            e = edges.get(i);
+        }
+    }
+    Node* orgNode = findNode(org);
+    Node* destNode = findNode(dest);
+    if(orgNode == nullptr || destNode == nullptr || edge == nullptr)
+    {
+        return false;
+    }
+
+    for(int i = 0; i < connections.longitud(); i++)
+    {
+        Connection* conn = connections.get(i);
+        if(conn->getOrg() == orgNode && conn->getDest() == destNode && conn->getEdge() == e)
+        {
+            delete connections.remove(i);
             return true;
         }
     }
