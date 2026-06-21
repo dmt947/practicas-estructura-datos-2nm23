@@ -1,0 +1,13 @@
+ORDEN ORIGINAL
+Nombre: Z Edad: 1
+Nombre: Y Edad: 2
+Nombre: X Edad: 3
+Nombre: W Edad: 4
+Nombre: V Edad: 5
+
+ORDENADO
+Nombre: V Edad: 5
+Nombre: W Edad: 4
+Nombre: X Edad: 3
+Nombre: Y Edad: 2
+Nombre: Z Edad: 1
