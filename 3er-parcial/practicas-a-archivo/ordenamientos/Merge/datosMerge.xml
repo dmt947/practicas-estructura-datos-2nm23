@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<datos>
+  <original>
+    <valor>10</valor>
+    <valor>9</valor>
+    <valor>8</valor>
+    <valor>7</valor>
+    <valor>6</valor>
+  </original>
+  <ordenado>
+    <valor>6</valor>
+    <valor>7</valor>
+    <valor>8</valor>
+    <valor>9</valor>
+    <valor>10</valor>
+  </ordenado>
+</datos>

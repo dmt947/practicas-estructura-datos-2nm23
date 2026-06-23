@@ -1,0 +1,11 @@
+=== REGISTRO DE OBJETO AUTO ===
+Precio: $15000.00
+Anio: 2022
+===============================
+
+=== REGISTRO DE OBJETO PERSONA ===
+Nombre Completo: Donas Esca Rome
+Genero: Masculino
+Edad: 18 anos
+==================================
+

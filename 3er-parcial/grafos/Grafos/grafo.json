@@ -1,0 +1,19 @@
+{
+  "nodos": [ "Casa","UPIICSA","Metro","Metrobus" ],
+  "aristas": [
+    { "nombre": "a", "tiempo": 5, "costo": 10 },
+    { "nombre": "b", "tiempo": 10, "costo": 10 },
+    { "nombre": "g", "tiempo": 1, "costo": 1 },
+    { "nombre": "f", "tiempo": 5, "costo": 10 },
+    { "nombre": "h", "tiempo": 5, "costo": 10 },
+    { "nombre": "c", "tiempo": 15, "costo": 5 }
+  ],
+  "conexiones": [
+    { "origen": "Casa", "destino": "UPIICSA", "via": "a" },
+    { "origen": "UPIICSA", "destino": "Metro", "via": "b" },
+    { "origen": "Casa", "destino": "Casa", "via": "g" },
+    { "origen": "UPIICSA", "destino": "Casa", "via": "f" },
+    { "origen": "Metro", "destino": "Metrobus", "via": "h" },
+    { "origen": "Casa", "destino": "Metrobus", "via": "c" }
+  ]
+}

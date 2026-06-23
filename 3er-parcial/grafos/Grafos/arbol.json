@@ -1,0 +1,13 @@
+{
+  "nodos": ["A", "B", "C", "D"],
+  "aristas": [
+    { "nombre": "a", "tiempo": 2.0, "costo": 2.0 },
+    { "nombre": "b", "tiempo": 2.0, "costo": 2.0 },
+    { "nombre": "c", "tiempo": 5.0, "costo": 5.0 }
+  ],
+  "conexiones": [
+    { "origen": "A", "destino": "B", "via": "a" },
+    { "origen": "A", "destino": "C", "via": "b" },
+    { "origen": "B", "destino": "D", "via": "c" }
+  ]
+}

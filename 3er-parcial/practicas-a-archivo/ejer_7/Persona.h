@@ -1,0 +1,37 @@
+#ifndef PERSONA_H
+#define PERSONA_H
+
+#include <string>
+
+class Persona
+{
+	public:
+		Persona();
+		~Persona();
+		
+	// setters
+    	void setNombre(std::string n);
+    	void setApat(std::string ap);
+    	void setAmat(std::string am);
+    	void setGenero(char g);
+    	void setEdad(int e);
+    
+    // getters
+    	std::string getNombre();
+    	std::string getApat();
+    	std::string getAmat();
+    	char getGenero();
+    	int getEdad();
+    
+    	void guardarEnArchivo(std::string texto);
+		void registrarPersona();
+    
+	protected:
+		std::string nom;
+		std::string apat;
+		std::string amat;
+		char genero;
+		int edad;
+};
+
+#endif

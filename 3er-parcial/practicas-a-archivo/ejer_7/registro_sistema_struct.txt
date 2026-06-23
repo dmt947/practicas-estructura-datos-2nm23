@@ -1,0 +1,11 @@
+=== REGISTRO STRUCT DATOSAUTO ===
+Precio: $300000
+Anio: 2026
+=================================
+
+=== REGISTRO STRUCT DATOSPERSONA ===
+Nombre: Pablo Roldan Medrano
+Genero: Masculino
+Edad: 20
+====================================
+
